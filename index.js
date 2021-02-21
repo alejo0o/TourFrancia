@@ -69,20 +69,42 @@ app.get('/comentarios', async (req, res) => {
   res.send(await queries.getComentarios());
 });
 //GetOne
-app.get('/comentarios/:dni', async (req, res) => {
-  res.send(await queries.getGanador(req.params.dni));
+app.get('/comentarios/:_id', async (req, res) => {
+  res.send(await queries.getGanador(req.params._id));
 });
 //Post
 app.post('/comentarios', async (req, res) => {
   res.send(await queries.createComentarios(req.body));
 });
 //Update
-app.put('/comentarios/:dni', async (req, res) => {
-  res.send(await queries.updateComentario(req.params.dni, req.body));
+app.put('/comentarios/:_id', async (req, res) => {
+  res.send(await queries.updateComentario(req.params._id, req.body));
 });
 //Delete
-app.delete('/comentarios/:dni', async (req, res) => {
-  res.send(await queries.deleteComentario(req.params.dni));
+app.delete('/comentarios/:_id', async (req, res) => {
+  res.send(await queries.deleteComentario(req.params._id));
+});
+
+/*-------------------Noticias-----------------*/
+//GetAll
+app.get('/noticias', async (req, res) => {
+  res.send(await queries.getNoticias());
+});
+//GetOne
+app.get('/noticias/:_id', async (req, res) => {
+  res.send(await queries.getNoticia(req.params._id));
+});
+//Post
+app.post('/noticias', async (req, res) => {
+  res.send(await queries.createNoticias(req.body));
+});
+//Update
+app.put('/noticias/:_id', async (req, res) => {
+  res.send(await queries.updateNoticia(req.params._id, req.body));
+});
+//Delete
+app.delete('/noticias/:_id', async (req, res) => {
+  res.send(await queries.deleteNoticia(req.params._id));
 });
 
 //Instancia del servidor
