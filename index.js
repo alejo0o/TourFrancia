@@ -63,6 +63,28 @@ app.delete('/ganadores/:dni', async (req, res) => {
 });
 
 
+/*-------------------Comentarios-----------------*/
+//GetAll
+app.get('/comentarios', async (req, res) => {
+  res.send(await queries.getComentarios());
+});
+//GetOne
+app.get('/comentarios/:dni', async (req, res) => {
+  res.send(await queries.getGanador(req.params.dni));
+});
+//Post
+app.post('/comentarios', async (req, res) => {
+  res.send(await queries.createComentarios(req.body));
+});
+//Update
+app.put('/comentarios/:dni', async (req, res) => {
+  res.send(await queries.updateComentario(req.params.dni, req.body));
+});
+//Delete
+app.delete('/comentarios/:dni', async (req, res) => {
+  res.send(await queries.deleteComentario(req.params.dni));
+});
+
 //Instancia del servidor
 app.listen(PORT, () => {
   console.log(`app listening at port ${PORT}`);
