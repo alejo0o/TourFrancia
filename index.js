@@ -1,6 +1,8 @@
 const express = require('express');
 const queries = require('./lib/actions/participantes');
 const queries = require('./lib/actions/ganadores');
+const queries = require('./lib/actions/comentarios');
+const queries = require('./lib/actions/noticias');
 const cors = require('cors');
 var bodyParser = require('body-parser');
 
