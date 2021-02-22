@@ -1,14 +1,17 @@
 const express = require('express');
-const participantes = require('./lib/actions/participantes');
-const ganadores = require('./lib/actions/ganadores');
-const comentarios = require('./lib/actions/comentarios');
-const noticias = require('./lib/actions/noticias');
 const cors = require('cors');
 var bodyParser = require('body-parser');
 
 require('dotenv').config();
 
 const { PORT } = process.env;
+//Modelos
+const participantes = require('./lib/actions/participantes');
+const ganadores = require('./lib/actions/ganadores');
+const comentarios = require('./lib/actions/comentarios');
+const noticias = require('./lib/actions/noticias');
+const etapas = require('./lib/actions/etapas');
+const usuarios = require('./lib/actions/usuarios');
 
 const app = express();
 //bodyParser permite habilitar el envio de informacion por body ya sea urlencoded o json
@@ -64,7 +67,6 @@ app.delete('/ganadores/:dni', async (req, res) => {
   res.send(await ganadores.deleteGanador(req.params.dni));
 });
 
-
 /*-------------------Comentarios-----------------*/
 //GetAll
 app.get('/comentarios', async (req, res) => {
@@ -107,6 +109,50 @@ app.put('/noticias/:_id', async (req, res) => {
 //Delete
 app.delete('/noticias/:_id', async (req, res) => {
   res.send(await noticias.deleteNoticia(req.params._id));
+});
+
+/*-------------------Etapas-----------------*/
+//GetAll
+app.get('/etapas', async (req, res) => {
+  res.send(await etapas.getEtapas());
+});
+//GetOne
+app.get('/etapas/:_id', async (req, res) => {
+  res.send(await etapas.getEtapa(req.params._id));
+});
+//Post
+app.post('/etapas', async (req, res) => {
+  res.send(await etapas.createEtapas(req.body));
+});
+//Update
+app.put('/etapas/:_id', async (req, res) => {
+  res.send(await etapas.updateEtapa(req.params._id, req.body));
+});
+//Delete
+app.delete('/etapas/:_id', async (req, res) => {
+  res.send(await etapas.deleteEtapa(req.params._id));
+});
+
+/*-------------------Usuarios-----------------*/
+//GetAll
+app.get('/usuarios', async (req, res) => {
+  res.send(await usuarios.getUsuarios());
+});
+//GetOne
+app.get('/usuarios/:dni', async (req, res) => {
+  res.send(await usuarios.getUsuario(req.params.dni));
+});
+//Post
+app.post('/usuarios', async (req, res) => {
+  res.send(await usuarios.createUsuarios(req.body));
+});
+//Update
+app.put('/usuarios/:dni', async (req, res) => {
+  res.send(await usuarios.updateUsuario(req.params.dni, req.body));
+});
+//Delete
+app.delete('/usuarios/:dni', async (req, res) => {
+  res.send(await usuarios.deleteUsuario(req.params.dni));
 });
 
 //Instancia del servidor
