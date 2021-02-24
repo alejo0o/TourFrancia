@@ -14,6 +14,7 @@ const etapas = require('./lib/actions/etapas');
 const usuarios = require('./lib/actions/usuarios');
 
 const app = express();
+app.use(cors()); //configuracion de cors
 //bodyParser permite habilitar el envio de informacion por body ya sea urlencoded o json
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
