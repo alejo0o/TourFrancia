@@ -276,6 +276,21 @@ app.delete('/usuarios/:dni', async (req, res) => {
   }
 });
 
+app.get('/usuario/auth', async (req, res) => {
+  try {
+    let user = await usuarios.autenticacionUsuario(
+      req.headers.authorization.split(':')[0],
+      req.headers.authorization.split(':')[1]
+    );
+    res.send({
+      usuario: user.dni,
+      admin: user.admin,
+    });
+  } catch (error) {
+    res.sendStatus(401);
+  }
+});
+
 //Instancia del servidor
 app.listen(PORT, () => {
   console.log(`app listening at port ${PORT}`);
