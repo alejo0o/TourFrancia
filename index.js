@@ -275,7 +275,7 @@ app.delete('/usuarios/:dni', async (req, res) => {
     res.sendStatus(500);
   }
 });
-
+//----------Custom Queries------------//
 app.get('/usuario/auth', async (req, res) => {
   try {
     let user = await usuarios.autenticacionUsuario(
@@ -288,6 +288,14 @@ app.get('/usuario/auth', async (req, res) => {
     });
   } catch (error) {
     res.sendStatus(401);
+  }
+});
+
+app.get('/comentarios_etapas/:numero_etapa', async (req, res) => {
+  try {
+    res.send(await comentarios.getComentariosEtapas(req.params.numero_etapa));
+  } catch (error) {
+    res.sendStatus(500);
   }
 });
 
